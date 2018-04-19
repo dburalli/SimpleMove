@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        int i;
+        int j;
+        int[][] fullArray;
+        fullArray = new int[6][6];
+        
+		//Fill in a 36 int matrix
+        Scanner scan = new Scanner(System.in);
+        for (i=0;i<6;i++){
+            String line = scan.nextLine();
+            for(j=0;j<6;j++){
+                String[] splitted = line.split(" ");
+                fullArray[i][j] = Integer.parseInt(splitted[j]);
+            }
+            
+        }
+        int response = hourGlass(fullArray);
+        System.out.println(Integer.toString(response));
+    }
+    
+    private static int hourGlass(int[][] fullArray){
+        int i;
+        int j;
+        int Sum = 0;
+        int maxSum = -63;
+        int iterations = (fullArray.length-2);
+        //finds and returns the the greatest sum of an hour glass pattern inside the 6 x 6 array
+		// 3 top row, one mid row, 3 bottom row. I shape
+        for(i=0;i<iterations;i++){
+            for(j=0;j<iterations;j++){
+                   Sum = fullArray[i][j] + fullArray[i][j+1] + fullArray[i][j+2];
+                  
+                   Sum = Sum + fullArray[i+1][j+1];
+                  
+                   Sum = Sum + fullArray[i+2][j] + fullArray[i+2][j+1] + fullArray[i+2][j+2];
+                  
+                    if (Sum > maxSum){
+                        maxSum = Sum;
+                    }
+            }      
+        }
+        return maxSum;
+    }
+}

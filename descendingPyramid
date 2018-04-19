@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static void staircase(int n) {
+        //char array, 2D array
+        //spaces = n--;
+        //# = spaces - n;
+        
+        int i;
+        int j;
+        int hashCount = 1;
+        
+        for(j=0;j<=n-1;j++){
+            for(i=0;i<n;i++){
+                if(i+hashCount < n){
+                     System.out.print(' ');
+                }
+                else{
+                    System.out.print('#');
+                }     
+            }
+            System.out.print(System.lineSeparator());
+            hashCount++;
+        }
+        
+    }
+
+    public static void main(String[] args) {
+	//input is size of pyramid, output is the pyramid
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        staircase(n);
+        in.close();
+    }
+}
